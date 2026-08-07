@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozinha da Dani - Pudins Gourmet</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 50%, #ffb3c6 100%);
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.4;
+            animation: floatShape 12s infinite alternate ease-in-out;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: #ff8fab;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            top: -50px;
+            left: -50px;
+        }
+
+        .shape-2 {
+            width: 350px;
+            height: 350px;
+            background: #ffccd5;
+            border-radius: 50%;
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -4s;
+        }
+
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            background: #ffe5ec;
+            transform: rotate(45deg);
+            top: 45%;
+            right: 5%;
+            animation-delay: -2s;
+        }
+
+        @keyframes floatShape {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(25px) rotate(10deg); }
+        }
+
+        button, .menu-item, .social-card, .cart-button, .add-btn-small {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        button:active, .menu-item:active, .social-card:active, .cart-button:active {
+            transform: scale(0.96);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(183, 9, 76, 0.15);
+        }
+
+        .cart-button:hover, .calc-btn:hover, .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #b7094c;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-top-logo {
+            display: none;
+        }
+
+        .mobile-nav {
+            display: none;
+            background: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            margin: 15px auto;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 10px;
+            color: #b7094c;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid #ffe5ec;
+            transition: background 0.2s;
+        }
+
+        .mobile-nav a:hover {
+            background: #fff0f3;
+        }
+
+        .mobile-nav a:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                position: relative;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding-top: 15px;
+            }
+            .mobile-menu-toggle {
+                display: block;
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                z-index: 10;
+            }
+            .mobile-top-logo {
+                display: block;
+                position: absolute;
+                top: 52px;
+                right: 12px;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid #ff4d6d;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                z-index: 10;
+            }
+            .restaurant-info {
+                text-align: center;
+                width: 100%;
+                margin-top: 5px;
+            }
+            .cart-button {
+                position: fixed !important;
+                bottom: 25px !important;
+                right: 25px !important;
+                z-index: 9999;
+                border-radius: 50px !important;
+                padding: 12px 20px !important;
+                box-shadow: 0 6px 20px rgba(183, 9, 76, 0.4) !important;
+            }
+            .store-info {
+                padding-left: 20px !important;
+                text-align: center !important;
+            }
+            .footer-logo-container {
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                margin: 0 auto 15px auto !important;
+                display: block;
+            }
+        }
+
+        .calc-btn {
+            margin-top: 8px;
+            width: 100%;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        #deliveryResult {
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #b7094c;
+        }
+
+        .store-info {
+            position: relative;
+            padding-left: 110px;
+            text-align: left;
+        }
+
+        .footer-logo-container {
+            position: absolute;
+            top: 25px;
+            left: 20px;
+        }
+
+        .footer-logo-container img {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff4d6d;
+            box-shadow: 0 4px 10px rgba(183, 9, 76, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="Foto de Eduardo(2).jpg" alt="Logo Dani" class="mobile-top-logo">
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="restaurant-info">
+                    <h1><i class="fas fa-heart"></i> Cozinha da Dani</h1>
+                    <p class="subtitle">Pudins & Sobremesas Artesanais</p>
+                    <div class="restaurant-details">
+                        <span class="rating"><i class="fas fa-star"></i> 5.0</span>
+                        <span class="status"><i class="fas fa-check-circle"></i> Pedidos Abertos</span>
+                    </div>
+                </div>
+                <button class="cart-button" id="cartButton">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                    <span class="cart-total" id="cartHeaderTotal">R$ 0,00</span>
+                </button>
+            </div>
+            <nav class="mobile-nav" id="mobileNav">
+                <a href="#pudim-150g"><i class="fas fa-cookie-bite"></i> Pudim 150g</a>
+                <a href="#pudim-500g"><i class="fas fa-gift"></i> Pudim 500g</a>
+                <a href="#pudim-1kg"><i class="fas fa-crown"></i> Pudim 1kg</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tamanho 150g -->
+            <section class="menu-section" id="pudim-150g">
+                <h2 class="section-title"><i class="fas fa-cookie-bite"></i> Pudim Gourmet - 150g</h2>
+                <div class="menu-list">
+                    <div class="menu-item" onclick="cart.openItemModal('Leite Condensado (150g)', 12.00, 'Foto de Eduardo(4).jpg', 'O clássico pudim de leite condensado super cremoso e com calda no ponto certo.')">
+                        <div class="item-info">
+                            <h3>Leite Condensado</h3>
+                            <p class="item-description">O clássico pudim super cremoso com calda dourada artesanal.</p>
+                            <span class="price">R$ 12,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(4).jpg" alt="Leite Condensado 150g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Leite Condensado (150g)', 12.00, 'Foto de Eduardo(4).jpg', 'O clássico pudim de leite condensado super cremoso e com calda no ponto certo.')">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Café (150g)', 12.00, 'Foto de Eduardo(10).jpg', 'Sabor marcante e harmonioso do café gourmet em forma de pudim.')">
+                        <div class="item-info">
+                            <h3>Café</h3>
+                            <p class="item-description">Sabor marcante e refinado do café selecionado com toque de caramelo.</p>
+                            <span class="price">R$ 12,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(10).jpg" alt="Café 150g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Café (150g)', 12.00, 'Foto de Eduardo(10).jpg', 'Sabor marcante e harmonioso do café gourmet em forma de pudim.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Maracujá (150g)', 12.00, 'Foto de Eduardo(5).jpg', 'Combinação perfeita do doce com a acidez suave do maracujá.')">
+                        <div class="item-info">
+                            <h3>Maracujá</h3>
+                            <p class="item-description">Equilíbrio perfeito entre o doce e o azedinho refrescante do maracujá.</p>
+                            <span class="price">R$ 12,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(5).jpg" alt="Maracujá 150g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Maracujá (150g)', 12.00, 'Foto de Eduardo(5).jpg', 'Combinação perfeita do doce com a acidez suave do maracujá.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Doce de Leite (150g)', 12.00, 'Foto de Eduardo(1).jpg', 'Textura aveludada com sabor intenso de doce de leite artesanal.')">
+                        <div class="item-info">
+                            <h3>Doce de Leite</h3>
+                            <p class="item-description">Feito com doce de leite bem caseiro e aveludado.</p>
+                            <span class="price">R$ 12,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(1).jpg" alt="Doce de Leite 150g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Doce de Leite (150g)', 12.00, 'Foto de Eduardo(1).jpg', 'Textura aveludada com sabor intenso de doce de leite artesanal.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Ninho com Nutella (150g)', 12.00, 'Foto de Eduardo.jpg', 'Massa suave de Leite Ninho finalizada com camada generosa de Nutella.')">
+                        <div class="item-info">
+                            <h3>Ninho com Nutella</h3>
+                            <p class="item-description">A combinação queridinha: pudim de Ninho com generosa Nutella.</p>
+                            <span class="price">R$ 12,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo.jpg" alt="Ninho com Nutella 150g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Ninho com Nutella (150g)', 12.00, 'Foto de Eduardo.jpg', 'Massa suave de Leite Ninho finalizada com camada generosa de Nutella.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Pistache (150g)', 14.00, 'Foto de Eduardo(7).jpg', 'Delicioso pudim gourmet de pistache puro, extremamente sofisticado.')">
+                        <div class="item-info">
+                            <h3>Pistache</h3>
+                            <p class="item-description">Sofisticado pudim gourmet preparado com pasta pura de pistache.</p>
+                            <span class="price">R$ 14,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(7).jpg" alt="Pistache 150g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Pistache (150g)', 14.00, 'Foto de Eduardo(7).jpg', 'Delicioso pudim gourmet de pistache puro, extremamente sofisticado.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tamanho 500g -->
+            <section class="menu-section" id="pudim-500g">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fas fa-gift"></i> Pudim Gourmet - 500g</h2>
+                    <span class="tag-encomenda">Sob Encomenda</span>
+                </div>
+                <div class="menu-list">
+                    <div class="menu-item" onclick="cart.openItemModal('Leite Condensado (500g)', 40.00, 'Foto de Eduardo(4).jpg', 'Pudim grande de 500g perfeito para compartilhar!')">
+                        <div class="item-info">
+                            <h3>Leite Condensado</h3>
+                            <p class="item-description">Ideal para compartilhar a dois ou em família.</p>
+                            <span class="price">R$ 40,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(4).jpg" alt="Leite Condensado 500g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Leite Condensado (500g)', 40.00, 'Foto de Eduardo(4).jpg', 'Pudim grande de 500g perfeito para compartilhar!')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Café (500g)', 40.00, 'Foto de Eduardo(10).jpg', 'Pudim gourmet de café 500g, sob encomenda.')">
+                        <div class="item-info">
+                            <h3>Café</h3>
+                            <p class="item-description">Sabor inconfundível para os amantes do bom café.</p>
+                            <span class="price">R$ 40,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(10).jpg" alt="Café 500g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Café (500g)', 40.00, 'Foto de Eduardo(10).jpg', 'Pudim gourmet de café 500g, sob encomenda.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Maracujá (500g)', 40.00, 'Foto de Eduardo(5).jpg', 'Pudim de Maracujá 500g super cremoso.')">
+                        <div class="item-info">
+                            <h3>Maracujá</h3>
+                            <p class="item-description">Cremoso e refrescante para momentos especiais.</p>
+                            <span class="price">R$ 40,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(5).jpg" alt="Maracujá 500g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Maracujá (500g)', 40.00, 'Foto de Eduardo(5).jpg', 'Pudim de Maracujá 500g super cremoso.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Doce de Leite (500g)', 40.00, 'Foto de Eduardo(1).jpg', 'Pudim de Doce de leite 500g sob encomenda.')">
+                        <div class="item-info">
+                            <h3>Doce de Leite</h3>
+                            <p class="item-description">Com a textura aveludada do verdadeiro doce de leite.</p>
+                            <span class="price">R$ 40,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(1).jpg" alt="Doce de Leite 500g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Doce de Leite (500g)', 40.00, 'Foto de Eduardo(1).jpg', 'Pudim de Doce de leite 500g sob encomenda.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Ninho com Nutella (500g)', 40.00, 'Foto de Eduardo.jpg', 'O queridinho da casa na versão média de 500g.')">
+                        <div class="item-info">
+                            <h3>Ninho com Nutella</h3>
+                            <p class="item-description">Massa leve de Ninho com muita Nutella.</p>
+                            <span class="price">R$ 40,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo.jpg" alt="Ninho com Nutella 500g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Ninho com Nutella (500g)', 40.00, 'Foto de Eduardo.jpg', 'O queridinho da casa na versão média de 500g.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Pistache (500g)', 45.00, 'Foto de Eduardo(7).jpg', 'Versão 500g de pistache refinado sob encomenda.')">
+                        <div class="item-info">
+                            <h3>Pistache</h3>
+                            <p class="item-description">Uma experiência inesquecível sabor pistache gourmet.</p>
+                            <span class="price">R$ 45,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(7).jpg" alt="Pistache 500g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Pistache (500g)', 45.00, 'Foto de Eduardo(7).jpg', 'Versão 500g de pistache refinado sob encomenda.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tamanho 1kg -->
+            <section class="menu-section" id="pudim-1kg">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fas fa-crown"></i> Pudim Gourmet - 1kg</h2>
+                    <span class="tag-encomenda">Sob Encomenda</span>
+                </div>
+                <div class="menu-list">
+                    <div class="menu-item" onclick="cart.openItemModal('Leite Condensado (1kg)', 70.00, 'Foto de Eduardo(4).jpg', 'Tamanho família perfeito para almoços e eventos especiais.')">
+                        <div class="item-info">
+                            <h3>Leite Condensado</h3>
+                            <p class="item-description">O tamanho perfeito para encantar sua família no domingo.</p>
+                            <span class="price">R$ 70,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(4).jpg" alt="Leite Condensado 1kg">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Leite Condensado (1kg)', 70.00, 'Foto de Eduardo(4).jpg', 'Tamanho família perfeito para almoços e eventos especiais.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Café (1kg)', 70.00, 'Foto de Eduardo(10).jpg', 'Pudim gigante de café 1kg.')">
+                        <div class="item-info">
+                            <h3>Café</h3>
+                            <p class="item-description">Surpreenda seus convidados com esse pudim marcante.</p>
+                            <span class="price">R$ 70,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(10).jpg" alt="Café 1kg">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Café (1kg)', 70.00, 'Foto de Eduardo(10).jpg', 'Pudim gigante de café 1kg.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Maracujá (1kg)', 70.00, 'Foto de Eduardo(5).jpg', 'Pudim grande de maracujá 1kg sob encomenda.')">
+                        <div class="item-info">
+                            <h3>Maracujá</h3>
+                            <p class="item-description">Grandioso, cremoso e com um aroma sem igual.</p>
+                            <span class="price">R$ 70,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(5).jpg" alt="Maracujá 1kg">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Maracujá (1kg)', 70.00, 'Foto de Eduardo(5).jpg', 'Pudim grande de maracujá 1kg sob encomenda.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Doce de Leite (1kg)', 70.00, 'Foto de Eduardo(1).jpg', 'Pudim de doce de leite grande sob encomenda.')">
+                        <div class="item-info">
+                            <h3>Doce de Leite</h3>
+                            <p class="item-description">Sabor caseiro irresistível em versão gigante.</p>
+                            <span class="price">R$ 70,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(1).jpg" alt="Doce de Leite 1kg">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Doce de Leite (1kg)', 70.00, 'Foto de Eduardo(1).jpg', 'Pudim de doce de leite grande sob encomenda.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Ninho com Nutella (1kg)', 70.00, 'Foto de Eduardo.jpg', 'Versão para festas do Pudim Ninho com Nutella.')">
+                        <div class="item-info">
+                            <h3>Ninho com Nutella</h3>
+                            <p class="item-description">A estrela de qualquer festa ou comemoração.</p>
+                            <span class="price">R$ 70,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo.jpg" alt="Ninho com Nutella 1kg">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Ninho com Nutella (1kg)', 70.00, 'Foto de Eduardo.jpg', 'Versão para festas do Pudim Ninho com Nutella.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Pistache (1kg)', 75.00, 'Foto de Eduardo(7).jpg', 'Sabor incomparável de pistache premium no tamanho 1kg.')">
+                        <div class="item-info">
+                            <h3>Pistache</h3>
+                            <p class="item-description">O topo da sofisticação para os momentos mais importantes.</p>
+                            <span class="price">R$ 75,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(7).jpg" alt="Pistache 1kg">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Pistache (1kg)', 75.00, 'Foto de Eduardo(7).jpg', 'Sabor incomparável de pistache premium no tamanho 1kg.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Store Info -->
+            <section class="store-info">
+                <div class="footer-logo-container">
+                    <img src="Foto de Eduardo(2).jpg" alt="Logo Cozinha da Dani">
+                </div>
+                <h2><i class="fas fa-heart"></i> Cozinha da Dani</h2>
+                <p class="store-subtitle">Pudins feitos com amor e carinho para adoçar seu dia 💕</p>
+                
+                <div class="social-cards">
+                    <a href="https://wa.me/5543988423648" target="_blank" class="social-card whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h3>Fale pelo WhatsApp</h3>
+                            <p>(43) 98842-3648</p>
+                        </div>
+                    </a>
+
+                    <a href="https://instagram.com/cozinha_da_daniii" target="_blank" class="social-card instagram">
+                        <i class="fab fa-instagram"></i>
+                        <div>
+                            <h3>Siga nosso Instagram</h3>
+                            <p>@cozinha_da_daniii</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Expanded Item Modal -->
+    <div class="customization-modal" id="itemModal">
+        <div class="customization-content">
+            <button class="close-customization" id="closeItemModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-expanded-image">
+                <img id="modalImage" src="" alt="Pudim">
+            </div>
+            <div class="customization-body">
+                <h3 id="modalTitle">Nome do Pudim</h3>
+                <p id="modalDescription" class="modal-desc"></p>
+                <span id="modalPrice" class="modal-price">R$ 0,00</span>
+
+                <div class="special-instructions">
+                    <label for="specialInstructions">
+                        <i class="fas fa-comment-heart"></i> Observações ou recado do pedido:
+                    </label>
+                    <textarea id="specialInstructions" placeholder="Ex: Embalar para presente, mandar sem calda extra, etc."></textarea>
+                </div>
+            </div>
+
+            <div class="customization-footer" style="display: flex; gap: 10px;">
+                <button class="add-to-cart-btn" id="addToCartBtn" style="flex: 1; background: #ff4d6d;">
+                    <i class="fas fa-cart-plus"></i> Adicionar
+                </button>
+                <button class="add-to-cart-btn" id="directCheckoutBtn" style="flex: 1; background: #2a9d8f;">
+                    <i class="fas fa-bolt"></i> Finalizar Direto
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2><i class="fas fa-shopping-bag"></i> Seu Carrinho Doce</h2>
+                <button class="close-cart" id="closeCart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="cart-body">
+                <div class="cart-items" id="cartItems">
+                    <div class="empty-cart">
+                        <i class="fas fa-heart-broken"></i>
+                        <p>Seu carrinho está vazio</p>
+                        <small>Escolha um delicioso pudim para começar!</small>
+                    </div>
+                </div>
+
+                <div class="cart-form" id="cartForm" style="display: none;">
+                    <h3><i class="fas fa-user-heart"></i> Dados do Pedido</h3>
+                    
+                    <div class="form-group">
+                        <label for="customerName">Seu Nome *</label>
+                        <input type="text" id="customerName" placeholder="Digite seu nome completo" required>
+                    </div>
+
+                    <!-- Endereço livre digitado pelo usuário (Placeholder limpo) -->
+                    <div class="form-group">
+                        <label>Endereço de Entrega (Rua, Número, Bairro) *</label>
+                        <input type="text" id="customerAddress" placeholder="Ex: Rua Exemplo, 123, San Rafael 3" autocomplete="off" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                        
+                        <button type="button" id="calcDeliveryBtn" class="calc-btn">
+                            <i class="fas fa-map-marker-alt"></i> Calcular Taxa pelo Bairro
+                        </button>
+                        <div id="deliveryResult"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paymentMethod">Forma de Pagamento *</label>
+                        <select id="paymentMethod" required>
+                            <option value="">Selecione o pagamento</option>
+                            <option value="pix">PIX</option>
+                            <option value="cartao">Cartão (na entrega)</option>
+                            <option value="dinheiro">Dinheiro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="changeGroup" style="display: none;">
+                        <label><input type="checkbox" id="needChange"> Preciso de troco</label>
+                        <div id="changeAmount" style="display: none;">
+                            <input type="number" id="changeValue" placeholder="Troco para quanto?" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orderNotes">Observações Finais</label>
+                        <textarea id="orderNotes" rows="2" placeholder="Ex: Entregar após as 14h, etc."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-footer">
+                <div class="cart-summary">
+                    <div class="summary-line">
+                        <span>Subtotal:</span>
+                        <span id="cartSubtotal">R$ 0,00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Taxa de Entrega:</span>
+                        <span id="deliveryFeeDisplay">R$ 0,00</span>
+                    </div>
+                    <div class="summary-line total">
+                        <span>Total do Pedido:</span>
+                        <span id="cartTotal">R$ 0,00</span>
+                    </div>
+                </div>
+                
+                <button class="checkout-btn" id="checkoutBtn" disabled>
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Enviar Pedido pelo WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <i class="fas fa-heart"></i>
+            <h3>Pedido Preparado!</h3>
+            <p>Você será redirecionado para o WhatsApp da Dani...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        if (mobileMenuToggle && mobileNav) {
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
+            });
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.style.display = 'none';
+                });
+            });
+        }
+
+        document.getElementById('directCheckoutBtn').addEventListener('click', function() {
+            const addBtn = document.getElementById('addToCartBtn');
+            if (addBtn) {
+                addBtn.click();
+            }
+            const itemModal = document.getElementById('itemModal');
+            if (itemModal) {
+                itemModal.style.display = 'none';
+            }
+            const cartModal = document.getElementById('cartModal');
+            if (cartModal) {
+                cartModal.style.display = 'flex';
+            }
+        });
+
+        window.calculatedDeliveryFee = 0;
+        window.isDeliveryCalculated = false;
+
+        function normalizeString(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        }
+
+        // Tabela de bairros atualizada para abrigar variações e numerações de bairros (ex: San Rafael 1 a 5)
+        const neighborhoodFees = {
+            'san rafael': 6.00,
+            'centro': 5.00,
+            'vila da luz': 5.00,
+            'parana': 5.00,
+            'jd': 5.00
+        };
+
+        function updateCartTotalsAndState() {
+            let subtotal = 0;
+            if (typeof cart !== 'undefined' && cart.items) {
+                cart.items.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                });
+            }
+
+            const deliveryFee = window.isDeliveryCalculated ? window.calculatedDeliveryFee : 0;
+            const total = subtotal + deliveryFee;
+
+            const subtotalEl = document.getElementById('cartSubtotal');
+            const deliveryDisplayEl = document.getElementById('deliveryFeeDisplay');
+            const totalEl = document.getElementById('cartTotal');
+
+            if (subtotalEl) subtotalEl.innerText = `R$ ${subtotal.toFixed(2)}`;
+            if (deliveryDisplayEl) deliveryDisplayEl.innerText = `R$ ${deliveryFee.toFixed(2)}`;
+            if (totalEl) totalEl.innerText = `R$ ${total.toFixed(2)}`;
+
+            const name = document.getElementById('customerName')?.value.trim();
+            const address = document.getElementById('customerAddress')?.value.trim();
+            const payment = document.getElementById('paymentMethod')?.value;
+            const checkoutBtn = document.getElementById('checkoutBtn');
+
+            if (checkoutBtn) {
+                if (name && address && payment && window.isDeliveryCalculated && cart && cart.items && cart.items.length > 0) {
+                    checkoutBtn.disabled = false;
+                } else {
+                    checkoutBtn.disabled = true;
+                }
+            }
+        }
+
+        document.getElementById('calcDeliveryBtn').addEventListener('click', function() {
+            const rawAddress = document.getElementById('customerAddress').value.trim();
+            const addressText = normalizeString(rawAddress);
+            const resultDiv = document.getElementById('deliveryResult');
+
+            if (!rawAddress) {
+                alert('Por favor, digite o endereço completo com o bairro.');
+                return;
+            }
+
+            let foundFee = 5.00;
+            let matchedNeighborhood = 'Padrão';
+
+            for (const [bairro, taxa] of Object.entries(neighborhoodFees)) {
+                if (addressText.includes(normalizeString(bairro))) {
+                    foundFee = taxa;
+                    matchedNeighborhood = bairro.toUpperCase();
+                    break;
+                }
+            }
+
+            window.calculatedDeliveryFee = foundFee;
+            window.isDeliveryCalculated = true;
+
+            resultDiv.innerHTML = `Bairro identificado: <b>${matchedNeighborhood}</b> - Taxa: R$ ${foundFee.toFixed(2)}`;
+            updateCartTotalsAndState();
+        });
+
+        ['customerName', 'customerAddress', 'paymentMethod'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('input', updateCartTotalsAndState);
+                el.addEventListener('change', updateCartTotalsAndState);
+            }
+        });
+
+        document.addEventListener('click', () => {
+            setTimeout(updateCartTotalsAndState, 150);
+        });
+
+        // Configuração final do envio com a nova ordem e emojis solicitados
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            if (checkoutBtn) {
+                const newCheckoutBtn = checkoutBtn.cloneNode(true);
+                checkoutBtn.parentNode.replaceChild(newCheckoutBtn, checkoutBtn);
+
+                newCheckoutBtn.addEventListener('click', function() {
+                    const name = document.getElementById('customerName').value.trim();
+                    const address = document.getElementById('customerAddress').value.trim();
+                    const payment = document.getElementById('paymentMethod').value;
+                    const notes = document.getElementById('orderNotes').value.trim();
+
+                    if (!name || !address || !payment) {
+                        alert('Por favor, preencha todos os campos obrigatórios.');
+                        return;
+                    }
+
+                    if (!window.isDeliveryCalculated) {
+                        alert('Por favor, clique em "Calcular Taxa pelo Bairro" antes de enviar.');
+                        return;
+                    }
+
+                    let itemsText = "";
+                    let subtotal = 0;
+                    if (typeof cart !== 'undefined' && cart.items) {
+                        cart.items.forEach(item => {
+                            subtotal += item.price * item.quantity;
+                            itemsText += `• ${item.quantity}x ${item.name} - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+                        });
+                    }
+
+                    const deliveryFee = window.calculatedDeliveryFee;
+                    const total = subtotal + deliveryFee;
+
+                    // Ordem da mensagem ajustada com corações brilhantes e emojis nos tópicos
+                    let message = `💖 *Olá, Cozinha da Dani! Novo Pedido:*%0A%0A`;
+                    message += `👤 *Cliente:* ${name}%0A`;
+                    message += `📍 *Endereço:* ${address}%0A%0A`;
+                    message += `🍮 *Itens do Pedido:*%0A${encodeURIComponent(itemsText)}%0A`;
+                    if (notes) {
+                        message += `📝 *Observação:* ${notes}%0A`;
+                    }
+                    message += `💳 *Forma de Pagamento:* ${payment}%0A`;
+                    message += `🛵 *Taxa de Entrega:* R$ ${deliveryFee.toFixed(2)}%0A`;
+                    message += `🏷️ *Subtotal:* R$ ${subtotal.toFixed(2)}%0A`;
+                    message += `✨ *Total com Entrega:* *R$ ${total.toFixed(2)}*%0A`;
+
+                    const phone = "5543988423648";
+                    
+                    const successModal = document.getElementById('successModal');
+                    if (successModal) successModal.style.display = 'flex';
+
+                    setTimeout(() => {
+                        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+                        if (successModal) successModal.style.display = 'none';
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
