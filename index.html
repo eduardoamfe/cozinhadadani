@@ -16,7 +16,7 @@
         }
 
         .bg-shapes {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -282,6 +282,20 @@
                         </div>
                     </div>
 
+                    <div class="menu-item" onclick="cart.openItemModal('Frutas Vermelhas (150g)', 15.00, 'Foto de Eduardo(3).jpg', 'Pudim artesanal super cremoso coberto com uma deliciosa calda de frutas vermelhas.')">
+                        <div class="item-info">
+                            <h3>Frutas Vermelhas</h3>
+                            <p class="item-description">Pudim cremoso com cobertura artesanal e pedaços de frutas vermelhas.</p>
+                            <span class="price">R$ 15,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(3).jpg" alt="Frutas Vermelhas 150g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Frutas Vermelhas (150g)', 15.00, 'Foto de Eduardo(3).jpg', 'Pudim artesanal super cremoso coberto com uma deliciosa calda de frutas vermelhas.')">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="menu-item" onclick="cart.openItemModal('Café (150g)', 12.00, 'Foto de Eduardo(10).jpg', 'Sabor marcante e harmonioso do café gourmet em forma de pudim.')">
                         <div class="item-info">
                             <h3>Café</h3>
@@ -363,6 +377,18 @@
                         </div>
                     </div>
 
+                    <div class="menu-item" onclick="cart.openItemModal('Frutas Vermelhas (500g)', 45.00, 'Foto de Eduardo(3).jpg', 'Pudim médio de 500g com generosa calda de frutas vermelhas.')">
+                        <div class="item-info">
+                            <h3>Frutas Vermelhas</h3>
+                            <p class="item-description">Sabor marcante com cobertura artesanal sob encomenda.</p>
+                            <span class="price">R$ 45,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(3).jpg" alt="Frutas Vermelhas 500g">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Frutas Vermelhas (500g)', 45.00, 'Foto de Eduardo(3).jpg', 'Pudim médio de 500g com generosa calda de frutas vermelhas.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
                     <div class="menu-item" onclick="cart.openItemModal('Café (500g)', 40.00, 'Foto de Eduardo(10).jpg', 'Pudim gourmet de café 500g, sob encomenda.')">
                         <div class="item-info">
                             <h3>Café</h3>
@@ -441,6 +467,18 @@
                         <div class="item-image-wrapper">
                             <img src="Foto de Eduardo(4).jpg" alt="Leite Condensado 1kg">
                             <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Leite Condensado (1kg)', 70.00, 'Foto de Eduardo(4).jpg', 'Tamanho família perfeito para almoços e eventos especiais.')"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="cart.openItemModal('Frutas Vermelhas (1kg)', 75.00, 'Foto de Eduardo(3).jpg', 'Pudim grande de frutas vermelhas 1kg para festas e eventos.')">
+                        <div class="item-info">
+                            <h3>Frutas Vermelhas</h3>
+                            <p class="item-description">A escolha perfeita para deixar sua mesa linda e deliciosa.</p>
+                            <span class="price">R$ 75,00</span>
+                        </div>
+                        <div class="item-image-wrapper">
+                            <img src="Foto de Eduardo(3).jpg" alt="Frutas Vermelhas 1kg">
+                            <button class="add-btn-small" onclick="event.stopPropagation(); cart.openItemModal('Frutas Vermelhas (1kg)', 75.00, 'Foto de Eduardo(3).jpg', 'Pudim grande de frutas vermelhas 1kg para festas e eventos.')"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
 
@@ -595,7 +633,6 @@
                         <input type="text" id="customerName" placeholder="Digite seu nome completo" required>
                     </div>
 
-                    <!-- Endereço livre digitado pelo usuário (Placeholder limpo) -->
                     <div class="form-group">
                         <label>Endereço de Entrega (Rua, Número, Bairro) *</label>
                         <input type="text" id="customerAddress" placeholder="Ex: Rua Exemplo, 123, San Rafael 3" autocomplete="off" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
@@ -700,7 +737,6 @@
             return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
         }
 
-        // Tabela de bairros atualizada para abrigar variações e numerações de bairros (ex: San Rafael 1 a 5)
         const neighborhoodFees = {
             'san rafael': 6.00,
             'centro': 5.00,
@@ -782,7 +818,6 @@
             setTimeout(updateCartTotalsAndState, 150);
         });
 
-        // Configuração final do envio com a nova ordem e emojis solicitados
         document.addEventListener('DOMContentLoaded', () => {
             const checkoutBtn = document.getElementById('checkoutBtn');
             if (checkoutBtn) {
@@ -817,7 +852,6 @@
                     const deliveryFee = window.calculatedDeliveryFee;
                     const total = subtotal + deliveryFee;
 
-                    // Ordem da mensagem ajustada com corações brilhantes e emojis nos tópicos
                     let message = `💖 *Olá, Cozinha da Dani! Novo Pedido:*%0A%0A`;
                     message += `👤 *Cliente:* ${name}%0A`;
                     message += `📍 *Endereço:* ${address}%0A%0A`;
